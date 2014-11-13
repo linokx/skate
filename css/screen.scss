@@ -1,0 +1,380 @@
+@import "bourbon/bourbon";
+@import "neat/neat";
+
+@import "reset.css";
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin linear-gradient($fromColor, $toColor) {
+  background-color: $toColor; /* Fallback Color */
+  background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, $fromColor, $toColor); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(top, $fromColor, $toColor); /* FF3.6 */
+  background-image:     -ms-linear-gradient(top, $fromColor, $toColor); /* IE10 */
+  background-image:      -o-linear-gradient(top, $fromColor, $toColor); /* Opera 11.10+ */
+  background-image:         linear-gradient(top, $fromColor, $toColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#{$fromColor}', EndColorStr='#{$toColor}');
+}
+
+@mixin animate($property, $duration, $timing, $delay){
+  -webkit-transition: $property $duration $timing $delay;
+  transition: $property $duration $timing $delay;
+}
+
+  h2{
+    font-size: 20px;
+    margin-bottom:10px;
+  }
+
+
+body{
+
+  background: #FFF url("../images/fond.png") top center no-repeat;
+  .wrapper{
+    @include outer-container;
+  }
+  .wrapper-header{
+    background:#FFF;
+    box-shadow: 0 1px 1px 1px rgba(0,0,0,.3);
+    position: relative;
+    z-index:2000;
+    
+    header {
+      height: 70px;
+      position: relative;
+      z-index:2000;
+      max-width: 960px;
+      margin:auto;
+      h1 {
+        float: left;
+        font-size: 40px;
+        width: 98px;
+        height: 49px;
+        background: url('../images/logo.png') center center no-repeat;
+        overflow: hidden;
+        text-indent: -9999px;
+        margin-top: 10px;
+
+        a{
+          display:  block;
+          height: 49px;
+        }
+      }
+      #user-space {
+        bottom: 4px;
+        position: absolute;
+        right: 10px;
+        text-transform: lowercase;
+        a{
+          text-decoration: none;
+          color: #000000;
+          font-family: arial;
+          font-size: 12px;
+          display: inline-block;
+        }
+        a+a:before{
+          content: ' | ';
+        }
+      }
+      #top-search {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+      }
+      #connexion {
+        background: #FFF;
+        border: 1px #DDD solid;
+        padding: 10px;
+        position: absolute;
+        right: -10px;
+        width: 250px;
+        margin-top: 10px;
+        z-index: 200;
+        .forget-pass {
+          display: block;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+#home{
+  background:#FFF;
+  
+  #content {
+    box-shadow:none;
+    padding:0;
+    margin-top: 0;
+    max-width:none;
+  }
+  #img_and_map{
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    -overflow-x: scroll;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+
+    &.active ul{
+      margin-left:-100%;
+    }
+    
+    ul {
+      @include animate(all, .7s, linear, 0);
+      width: 200%;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    ul li {
+      margin: 0;
+      padding: 0;
+      /* display: inline; */
+      width: 50%;
+      float: left;
+      height: 100%;
+    }
+
+    .home {
+      height: 100%;
+      display: block;
+      background: url('../images/background.jpg') top left no-repeat;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+    }
+
+    #bigmap {
+      width: 100%;
+      height: 100%;
+      border:none;
+    }
+    &+.wrapper{
+      @include animate(all, .7s, linear, 0);
+      background: #FFF;
+      position:relative;
+      margin-top: -200px;
+    }
+    &.active+.wrapper{
+      margin-top:0px;
+    }
+  }
+}
+
+#content {
+  background: #FFF;
+  box-shadow: 0 1px 1px 1px rgba(0,0,0,.3);
+  margin: 80px auto 0;
+  padding:10px;
+  max-width: 960px;
+  .welcome {
+    padding: 50px 50px 55px 70px;
+    width: 620px;
+    float: left;
+    p {
+      font-family: Arial;
+      text-transform: uppercase;
+      font-size: 13px;
+      line-height: 15px;
+      text-align: justify;
+      word-wrap: break-word;
+    }
+    p + p {
+      margin-top: 15px;
+    }
+    #content-search {
+      margin-top: 10px;
+    }
+  }
+}
+
+.app {
+  float: left;
+  padding-top: 50px;
+  padding-left: 5px;
+  div.os {
+    height: 70px;
+    margin-bottom: 12px;
+    width: 265px;
+    border: 1px #DEDDE5 solid;
+    @include border-radius(5px);
+    a{
+      display: block;
+      font-family: Arial;
+      height:70px;
+      span{
+        display: block;
+        font-size: 12px;
+        color: #AEBECB;
+        padding: 15px 0 8px;
+      }
+      strong{
+        color:#5D7287; 
+        text-transform: uppercase;
+        font-weight: bold; 
+      }
+    }
+    a:hover{
+      text-decoration:none;
+    }
+    a:before{
+      @include linear-gradient(#FFF, #EEE);
+      height: 68px;
+      float:left;
+      width: 70px;
+      margin-right: 14px;
+      border-right: 1px #DDD solid;
+      padding-top:10px;
+      line-height:68px;
+      text-align:center;
+      @include border-radius(5px 0 0 5px);
+    }
+    a.apple:before{
+      content: url('../images/apple-logo.png');
+    }
+    a.android:before{
+      content: url('../images/android-logo.png');
+    }
+    a.windows:before{
+      content: url('../images/windows-logo.png');
+    }
+  }
+}
+
+.map-zone {
+  position: relative;
+  display:  none;
+
+  .search input {
+    padding: 5px;
+    height: 36px;
+    border: 1px green solid;
+    max-width: 96px;
+  }
+  
+  #bigmap {
+    margin: 10px 0;
+    border: none;
+  }
+  
+  #phone {
+    background: url("../images/iphone.png");
+    background-size: 100%;
+    height: 470px;
+    width: 270px;
+    position: absolute;
+    top: -40px;
+    right: 35px;
+    padding: 85px 46px;
+    form {
+      margin: 0;
+    }
+  }
+}
+
+.geoloc {
+  background: url("../images/location.png");
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  text-indent: 24px;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+#bigmap {
+  height: 410px;
+  margin: 0 0 10px;
+  border: 1px #A5A5A5 solid;
+  background: #EEE;
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  img {
+    box-shadow:none {}
+  }
+}
+
+.spot {
+  margin: 5px;
+  border: 1px #DDD solid;
+  padding: 10px;
+}
+
+.comment {
+  background: #EEE;
+  margin: 10px 0;
+  padding: 10px;
+  min-height: 70px;
+
+  img{
+    height:50px;
+    width:50px;
+    float:left;
+    margin-right: 10px;
+  }
+}
+
+section#profil {
+  
+  -background: #EEE;
+  & > * {
+    padding: 10px;
+  }
+  .content {
+    @include span-columns(9);
+    background: #FFF;
+
+    span{
+      @include span-columns(4 of 9);
+      margin-bottom:5px;
+    }
+    .thumbnail{
+      @include span-columns(3);
+      @include omega(4n);
+      height: auto;
+    }
+  }
+  
+  aside {
+    @include span-columns(3);
+    text-align: center;
+    h1{
+      font-size:30px;
+      padding-bottom: 20px;
+      border-bottom:  1px solid #DDD;
+    }
+    img{
+      @include border-radius(20px);
+      margin: 20px 0;
+      width: 100%;
+      height: auto;
+      max-width: 200px;
+      max-height: 200px;
+    }
+    div{
+      border-top:  1px solid #FFF;
+      line-height: 50px;
+      border-bottom:  1px solid #DDD;
+    }
+  }
+  header {
+    border-bottom: 1px #EEE solid;
+    margin-bottom:10px;
+  }
+}
+section#spot{
+  
+  .thumbnail{
+    @include span-columns(3);
+    @include omega(4n);
+    height: auto;
+  }
+}

@@ -1,0 +1,195 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	background: none;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after,
+.clearfix {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+sup{
+	font-size: 0.5em;
+}
+html{
+	background: #FFF url('../images/fond.png') top center no-repeat;
+	background-size: 1200px; 
+	min-height: 1500px;
+}
+body{
+	width: 1200px;
+	padding: 0 120px;
+	margin: 0 auto;
+}
+body>header{
+	background: #FFF;
+	height: 70px;
+	position: relative;
+}
+	header h1{
+		float: left;
+		padding: 15px 20px;
+		font-size: 40px;
+	}
+	header #user-space{
+		bottom: 4px;
+		position: absolute;
+		right: 10px;
+		text-transform: lowercase;
+	}
+	header #top-search{
+		position: absolute;
+		right: 10px;
+		top: 10px;
+	}
+	header #connexion{
+		background: #FFF;
+		border: 1px #DDD solid;
+		padding: 10px;
+		position: absolute;
+		right: -10px;
+		width: 250px;
+		margin-top: 10px;
+		z-index: 200;
+	}
+		#connexion .forget-pass{
+			display: block;
+			font-size: 12px;
+		}
+#home #content{
+	margin-top: 450px;
+}
+	#content{
+		background: #FFF;
+		margin-top: 50px;
+	}
+	#content .welcome{
+		padding: 50px 50px 25px 70px;
+		width: 620px;
+		float: left;
+	}
+		.welcome p{
+			font-family: Arial;
+			text-transform: uppercase;
+			font-size: 13px;
+			line-height: 15px;
+			text-align: justify;
+			word-wrap: break-word;
+		}
+		.welcome p+p{
+			margin-top: 15px;
+		}
+	#content .app{
+		float: left;
+		padding-top: 50px;
+		padding-left: 5px;
+	}
+		.app a{
+			height: 70px;
+			display: block;
+			margin-bottom: 12px;
+			width: 265px;
+			border: 1px #DDD solid;
+			border-radius: 5px;
+		}
+	#content #content-search{
+		margin-top: 10px;
+	}
+.map-zone{
+	position: relative;
+}
+	.search input{
+		padding: 5px;
+		height: 36px;
+		border: 1px green solid;
+		max-width: 96px;
+	}
+	.map-zone #bigmap{
+		margin: 10px 0 ;
+		border: none;
+	}
+	.map-zone #phone{
+		background: url('../images/iphone.png');
+		background-size: 100%;
+		height: 470px;
+		width: 270px;
+		position: absolute;
+		top: -40px;
+		right: 35px;
+		padding: 85px 46px;
+	}
+		#content #phone form{
+			margin: 0;
+		}
+.geoloc{
+	background: url('../images/location.png');
+	height: 24px;
+	width: 24px;
+	display: inline-block;
+	text-indent: 24px;
+	overflow: hidden;
+}
+#bigmap{height:410px;margin:20px 0;border:1px #A5A5A5 solid;background:#EEE;width:100%;display:inline-block;box-sizing:border-box;-moz-box-sizing:border-box;}
+#bigmap img{box-shadow:none;}
+.spot{
+	margin: 5px;
+	border: 1px #DDD solid;
+	padding: 10px;
+}
+.comment{
+	background: #EEE;
+	margin: 10px 0;
+	padding: 10px;
+}
+section#profil>*{
+	padding: 10px;
+	margin: 0 10px;
+}
+	section#profil>div{
+		float: left;
+		width: 800px;
+	}
+	section#profil aside{
+		float: left;
+		text-align: center;
+		width: 120px;
+	}
+	section#profil header{
+		border-bottom: 1px #CCC solid;
+	}
