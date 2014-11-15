@@ -7,10 +7,11 @@
 	<section id="profil" class="clearfix">
 		<aside>
 			@if($user->photo)
-				{{ HTML::image('uploads/'.$user->photo->url, "Photo de $user->pseudo", array('height'=> $user->photo->height, 'width'=>$user->photo->width)) }}
+				{{ HTML::image('uploads/user/thumbnail/'.$user->photo->url, "Photo de $user->pseudo", array('height'=> $user->photo->height, 'width'=>$user->photo->width)) }}
 			@endif
 			<h1>{{ $user->pseudo }}</h1>
-			<div>Photos postées  ({{count($user->photos)}})</div>
+			<div>
+				{{ link_to('profil/photo', 'Photos postées  ('.count($user->photos).')')}}</div>
 			<div>Spots ajoutés  ({{count($user->spots)}})</div>
 			<div>Commentaires postés  ({{count($user->comments)}})</div>
 		</aside>
@@ -28,11 +29,7 @@
 
 			<div>
 				<h2>Photos postées  ({{count($user->photos)}})</h2>
-				<div class="clearfix">
-					@foreach ($user->photos->slice(0,10) as $photo)
-						<img src="uploads/{{$photo->url}}" height="{{$photo->height}}" width="{{$photo->width}}" class="thumbnail" />
-					@endforeach
-				</div>
+				@include('user.photo')
 			</div>
 			<div>
 				<h2>Spots ajoutés ({{count($user->spots)}})</h2>
@@ -46,10 +43,7 @@
 			<div>
 				<h2>Commentaires postés ({{count($user->comments)}})</h2>
 				@foreach ($user->comments as $comment)
-					<div class="comment">
-						<p>{{$comment->content}}</p>
-						{{ link_to('spot/'.$comment->spot_id, 'Voir la page') }}
-					</div>
+					@include('comment.show')
 				@endforeach
 			</div>
 			@endif

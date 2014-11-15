@@ -13,30 +13,33 @@
     <![endif]-->
   </head>
     <body {{{ isset($body_id) ? 'id='.$body_id : '' }}}>
-    <header>
-      <h1>
-          {{ link_to('/', 'Logo') }}</h1>
-      <form class="search" id="top-search">
-        <input name="place" class="place" />
-        <input name="key" class="key-word"/>
-        <input type="submit" value="Go" />
-        <a class="geoloc getPosition">GéoLoc</a>
-      </form>
-      <div id="user-space">
-        @if(Auth::check())
-          {{ link_to('spot/create', 'Ajouter un spot') }}
-          {{ link_to('profil', 'Profil') }}
-          {{ link_to('auth/logout', 'Deconnexion') }}
-        @else
-          {{ link_to('auth/login', 'Connexion', array('class'=>'connexion')) }} | {{ link_to('user/create', 'Inscription') }}
-          @include('login')
-        @endif
-      </div>
-    </header>
+      <div class="wrapper-header">
+      <header>
+        <h1>
+            {{ link_to('/', 'Logo') }}</h1>
+        <form class="search" id="top-search">
+          <input name="place" class="place" /><input name="key" class="key-word"/>
+          <input type="submit" value="Go" />
+          <a class="geoloc getPosition">GéoLoc</a>
+        </form>
+        <div id="user-space">
+          @if(Auth::check())
+            {{ link_to('spot/create', 'Ajouter un spot') }}
+            {{ link_to('profil', 'Profil') }}
+            {{ link_to('auth/logout', 'Deconnexion') }}
+          @else
+            {{ link_to('auth/login', 'Connexion', array('class'=>'connexion')) }} | {{ link_to('user/create', 'Inscription') }}
+            @include('login')
+          @endif
+        </div>
+      </header>
+    </div>
     <div id="content">
       @yield('contenu')
     </div>
-
+    <footer>
+      &copy; Riddde
+    </footer>
     {{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyDp9rhTUfZDGTY4p6X0JCxL2tHt8KKk1Y0&sensor=false') }}
     {{ HTML::script('/js/jquery.js') }}
     {{ HTML::script('/js/box.js') }}

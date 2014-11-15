@@ -9,8 +9,10 @@
 		{{ Form::open(array('url' => 'profil/edit', 'method' => 'put', 'files' => true, 'class' => 'form-horizontal panel')) }}	
 			<small class="text-danger">{{ $errors->first('image') }}</small>
 			<div class="{{ $errors->has('nom') ? 'has-error has-feedback' : '' }}">
+				{{ Form::label('image','Nouvelle photo')}}
 				{{ Form::file('image', array('class' => 'form-control')) }}
 			</div>
+
 			<small class="text-danger">{{ $errors->first('name') }}</small>
 		  	<div class="{{ $errors->has('name') ? 'has-error has-feedback' : '' }}">
 				{{ Form::label('name','Prénom')}}
