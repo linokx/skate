@@ -41,6 +41,7 @@ Route::group(array('before' => 'auth'), function(){
 		Route::get('profil','UserController@profil');
 		Route::get('profil/edit', 'UserController@edit');
 		Route::put('profil/edit','UserController@update');
+		Route::get('profil/photo', 'UserController@photo');
 });
 
 

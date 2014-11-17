@@ -47,6 +47,8 @@
 						{{ link_to('spot/'.$comment->spot_id, 'Voir la page') }}
 					</div>
 				@endforeach
+				
+				<?php echo $user->comments->links(); ?>
 			</div>
 			@endif
 		</div>

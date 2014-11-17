@@ -8,7 +8,7 @@
 			<h1>{{ $spot->name }}</h1>
 			<div>{{ $spot->address}} <div class="coord">{{ $spot->lat }}° | {{$spot->lon}}°</div></div>
 		</article>
-		<div>
+		<div id="photos">
 			<h2>Photo</h2>
 			<div class="clearfix">
 				@foreach ($spot->photos as $photo)
@@ -23,8 +23,8 @@
 					<small class="text-danger">{{ $errors->first('image') }}</small>
 					<div class="form-group {{ $errors->has('nom') ? 'has-error has-feedback' : '' }}">
 						{{Form::label('image','Ajouter une photo')}}
-					{{ Form::submit('Envoyer !', array('class' => 'btn btn-info pull-right')) }}
 						{{ Form::file('image', array('class' => 'form-control')) }}
+						{{ Form::submit('Envoyer !', array('class' => 'btn btn-info pull-right')) }}
 					</div>
 				{{ Form::close() }}
 			@endif
@@ -35,13 +35,13 @@
 				@if(Session::has('error'))
 					<div class="alert alert-danger">{{ Session::get('error') }}</div>
 				@endif
-				{{ Form::open(array('url' => 'comment', 'method'=>'post')) }}
+				{{ Form::open(array('url' => 'comment', 'method'=>'post', 'class'=>'clearfix')) }}
 					<small class="text-danger">{{ $errors->first('image') }}</small>
 					<div class="form-group {{ $errors->has('nom') ? 'has-error has-feedback' : '' }}">
 						{{ Form::hidden('spot', $spot->id) }}
-						{{ Form::textarea('content', '', array('rows'=>'3') )}}
+						{{ Form::textarea('content', '', array('rows'=>'3', 'placeholder'=>'Ajouter un commentaire...') )}}
 					</div>
-					{{ Form::submit('Envoyer !', array('class' => 'btn btn-info')) }}
+					{{ Form::submit('Envoyer !', array('class' => 'btn btn-info pull-right')) }}
 				{{ Form::close() }}
 			@endif
 			@if(count($comments)>0)

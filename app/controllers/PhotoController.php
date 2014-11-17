@@ -19,7 +19,7 @@ class PhotoController extends BaseController {
 		    return Redirect::to('spot/'.$id)
             ->withErrors($this->validation->errors());
 		} else {
-			if($photo = $this->photogestion->save(Input::file('image'),$id)) {
+			if($photo = $this->photogestion->save(Input::file('image'),'spot',$id)) {
 		    	return Redirect::to('spot/'.$id);
 			} else {
 		    	return Redirect::to('spot/'.$id)

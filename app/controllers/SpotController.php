@@ -3,23 +3,26 @@
 use Lib\Validation\SpotCreateValidator as SpotCreateValidator;
 use Lib\Validation\SpotUpdateValidator as SpotUpdateValidator;
 use Lib\Gestion\SpotGestion as SpotGestion;
+use Lib\Gestion\CommentGestion as CommentGestion;
 
 class SpotController extends \BaseController {
 
 	protected $create_validation;
 	protected $update_validation;
 	protected $spot_gestion;
+	protected $comment_gestion;
 
 	public function __construct(
 		SpotCreateValidator $create_validation, 
 		SpotUpdateValidator $update_validation,
-		SpotGestion $spot_gestion
-		)
+		SpotGestion $spot_gestion,
+		CommentGestion $comment_gestion)
 	{
 		parent::__construct();
 		$this->create_validation = $create_validation;
 		$this->update_validation = $update_validation;
 		$this->spot_gestion = $spot_gestion;
+		$this->comment_gestion = $comment_gestion;
 	}
 
 	/**
@@ -74,8 +77,14 @@ class SpotController extends \BaseController {
 	 */
 	public function show($id)
 	{
+		$spot = Spot::find($id);
+		$comments = Comment::where('spot_id',$spot->id)->paginate(10);
+		foreach ($comments as $key => &$comment) {
+			$comment->user->photo = $this->comment_gestion->getOne($comment->id);
+		}
 		return View::make('spots.show', array(
-			'spot' => Spot::find($id)
+			'spot' => $spot,
+			'comments' => $comments
 			)
 		);
 	}

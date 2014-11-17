@@ -26,12 +26,14 @@
 				$overlay = $('<div class="'+settings.cssPrefix+'overlay"></div>').css({
 					background: 'black',
 					position: 'absolute',
+					bottom:0,
 					top: 0,
 					left: 0,
+					right:0,
 					zIndex: settings.zIndexBase,
 					cursor: 'pointer',
-					width: $(document).outerWidth(true),
-					height: $(document).outerHeight(true)
+					minWidth: $(document).outerWidth(true),
+					minHeight: $(document).outerHeight(true)
 				}).hide().appendTo('body').on('click.box',closeBox);
 			}
 			if(!$container.size()){
@@ -64,7 +66,8 @@
 			);
 		};
 		var loadImage = function(){
-			var $img = $('<img src="'+elements[currentIndex]+'"/>').css({
+			var sImg = elements[currentIndex].replace("thumbnail", "large");
+			var $img = $('<img src="'+sImg+'"/>').css({
 				display:'inline-block',
 				cursor: 'pointer'})
 				.hide().appendTo('body').load(function(){

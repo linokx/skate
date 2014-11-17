@@ -11,6 +11,7 @@ class UserController extends BaseController {
     protected $create_validation;
 	protected $update_validation;
 	protected $user_gestion;
+	protected $user = '';
 
 	public function __construct(
 		UserCreateValidator $create_validation, 
@@ -26,6 +27,9 @@ class UserController extends BaseController {
 		$this->user_gestion = $user_gestion;
 		$this->photoValidation = $validation;
 		$this->photogestion = $photogestion;
+		if(Auth::check()){
+			$this->user = Auth::user();
+		}
 	}
 
 	public function index()
@@ -52,7 +56,12 @@ class UserController extends BaseController {
 
 	public function show($id)
 	{
-		return View::make('user.show',  $this->user_gestion->show($id));
+		if($user = $this->user_gestion->show($id)){
+			return View::make('user.show',$user);
+		}
+		else{
+			return Redirect::to('/');
+		}
 	}
 
 	public function edit(){
@@ -63,8 +72,8 @@ class UserController extends BaseController {
 
     public function profil()
 	{
-		if(Auth::user()){
-			$id = Auth::user()->id;
+		if(Auth::check()){
+			$id = $this->user->id;
 			return View::make('user.profil',  $this->user_gestion->show($id));
 		}
 	}
@@ -77,13 +86,13 @@ class UserController extends BaseController {
 		    		return Redirect::to('profil/edit')
             		->withErrors($this->validation->errors());
 				} else {
-					$photo = $this->photogestion->save(Input::file('image'));
+					$photo = $this->photogestion->save(Input::file('image'),'user');
 					$this->user_gestion->updatePhoto($id,$photo);
 					 
 				}
 			}
 			if ($this->update_validation->fails($id)) {
-			  return Redirect::to('profil/edit', array($id))
+			  return Redirect::to('profil/edit')
 			  ->withInput()
 			  ->withErrors($this->update_validation->errors());
 			} else {
@@ -105,8 +114,11 @@ class UserController extends BaseController {
 		return Redirect::back();
 	}
 
-	public function photo($id){
-		return View::make('user.photo',  $this->user_gestion->show($id));
+	public function photo($id = null ){
+		if($id == null and $this->user != null){
+			$id = $this->user->id;
+		}
+		return View::make('user.page_photo',  $this->user_gestion->show($id));
 	}
 
 

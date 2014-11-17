@@ -52,6 +52,8 @@
 		else{
 			getNavigatorPosition();
 		}
+
+			$('#img_and_map').addClass('active');
 	},
 	getGooglePosition = function($obj){
 		if($obj.val() != ''){
@@ -102,7 +104,7 @@
 
 	        //Paramétrage de la google map
 			gmap = new google.maps.Map(document.getElementById('bigmap'),{
-				zoom: 15,
+				zoom: 14,
 				controls: false,
 				mapTypeId: google.maps.MapTypeId.ROADMAP,
 				scrollwheel: true,
@@ -174,7 +176,7 @@
 					google.maps.event.addListener(aMarker[spot['id']], 'mouseover', function() {
 						this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
 				  		this.infowindow.open(gmap,this);
-				  		this.infowindow.setContent('<div style="padding:10px;"><img src="'+baseDir+'uploads/'+this.image+'" height="50" width="50" style="float:left; margin-right:10px" /><p>'+this.title+'</p>');
+				  		this.infowindow.setContent('<div style="padding:10px;"><img src="'+baseDir+'uploads/spot/thumbnail/'+this.image+'" height="50" width="50" style="float:left; margin-right:10px" /><p>'+this.title+'</p>');
 					});
 					google.maps.event.addListener(aMarker[spot['id']],'mouseout',function(){
 						this.infowindow.close();

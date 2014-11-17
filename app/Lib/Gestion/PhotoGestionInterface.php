@@ -2,6 +2,6 @@
 
 interface PhotoGestionInterface {
 
-    public function save($image);
+    public function save($image,$folder);
 
 }

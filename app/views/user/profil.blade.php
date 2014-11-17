@@ -26,26 +26,31 @@
 				@endif
 			</header>
 			@if(Auth::user() and (Auth::user()->admin or Auth::user()->id == $user->id))
-
-			<div>
-				<h2>Photos postées  ({{count($user->photos)}})</h2>
-				@include('user.photo')
-			</div>
-			<div>
-				<h2>Spots ajoutés ({{count($user->spots)}})</h2>
-				<div>
-					@foreach ($user->spots as $spot)
-						<div>{{$spot->name}}
-						{{ link_to('spot/'.$spot->id, 'Voir la page') }}</div>
-					@endforeach
-				</div>
-			</div>
-			<div>
-				<h2>Commentaires postés ({{count($user->comments)}})</h2>
-				@foreach ($user->comments as $comment)
-					@include('comment.show')
-				@endforeach
-			</div>
+				@if(count($user->photos))
+					<div>
+						<h2>Photos postées  ({{count($user->photos)}})</h2>
+						@include('user.photo')
+					</div>
+				@endif
+				@if(count($user->spots))
+					<div>
+						<h2>Spots ajoutés ({{count($user->spots)}})</h2>
+						<div>
+							@foreach ($user->spots as $spot)
+								<div>{{$spot->name}}
+								{{ link_to('spot/'.$spot->id, 'Voir la page') }}</div>
+							@endforeach
+						</div>
+					</div>
+				@endif
+				@if(count($user->comments))
+					<div id="comment">
+						<h2>Commentaires postés ({{count($user->comments)}})</h2>
+						@foreach ($user->comments as $comment)
+							@include('comment.show')
+						@endforeach
+					</div>
+				@endif
 			@endif
 		</div>
 	</section>

@@ -30,11 +30,17 @@
     font-size: 20px;
     margin-bottom:10px;
   }
-
+html{
+  h1,h2,h3,h4,h5,h6{
+    font-family: 'Times New Roman';
+  }
+}
 
 body{
 
+  font-family: Arial;
   background: #FFF url("../images/fond.png") top center no-repeat;
+  background-size: cover;
   .wrapper{
     @include outer-container;
   }
@@ -85,6 +91,29 @@ body{
         position: absolute;
         right: 10px;
         top: 10px;
+        .place{
+          margin: 0;
+          padding: 0 0 0 5px;
+          width: 100px;
+          height: 34px;
+        }
+        .key-word{
+          margin-left: -6px;
+          margin: 0;
+          padding: 0 0 0 5px;
+          width: 100px;
+          height: 34px;
+        }
+        input[type="submit"] {
+          width: 34px;
+          height: 34px;
+          margin-left: -6px;
+          background-color: #000000;
+          color:#FFF;
+        }
+        input {
+          border: 1px solid #000000;
+        }
       }
       #connexion {
         background: #FFF;
@@ -126,7 +155,7 @@ body{
     }
     
     ul {
-      @include animate(all, .7s, linear, 0);
+      @include animate(margin-left, .7s, linear, 0);
       width: 200%;
       overflow: hidden;
       height: 100%;
@@ -156,7 +185,7 @@ body{
       border:none;
     }
     &+.wrapper{
-      @include animate(all, .7s, linear, 0);
+      @include animate(margin-top, .7s, linear, 0);
       background: #FFF;
       position:relative;
       margin-top: -200px;
@@ -170,7 +199,7 @@ body{
 #content {
   background: #FFF;
   box-shadow: 0 1px 1px 1px rgba(0,0,0,.3);
-  margin: 80px auto 0;
+  margin: 80px auto 50px;
   padding:10px;
   max-width: 960px;
   .welcome {
@@ -178,7 +207,6 @@ body{
     width: 620px;
     float: left;
     p {
-      font-family: Arial;
       text-transform: uppercase;
       font-size: 13px;
       line-height: 15px;
@@ -279,11 +307,11 @@ body{
 }
 
 .geoloc {
-  background: url("../images/location.png");
-  height: 24px;
-  width: 24px;
+  background: url("../images/geo.png") no-repeat;
+  height: 32px;
+  width: 32px;
   display: inline-block;
-  text-indent: 24px;
+  text-indent: 32px;
   overflow: hidden;
   vertical-align: middle;
 }
@@ -308,19 +336,6 @@ body{
   padding: 10px;
 }
 
-.comment {
-  background: #EEE;
-  margin: 10px 0;
-  padding: 10px;
-  min-height: 70px;
-
-  img{
-    height:50px;
-    width:50px;
-    float:left;
-    margin-right: 10px;
-  }
-}
 
 section#profil {
   
@@ -372,9 +387,75 @@ section#profil {
 }
 section#spot{
   
+  h1{
+    font-size: 60px;
+    border-bottom:1px #333 solid;
+    margin-bottom:10px;
+  }
+  h2{
+    margin-top:50px;
+    font-size:36px;
+  }
   .thumbnail{
     @include span-columns(3);
     @include omega(4n);
     height: auto;
   }
+  article{
+    margin-bottom: 20px;
+  }
+  .coord{
+    float:right;
+  }
+}
+#photos{
+  input[type="file"]{
+    margin:10px 0;
+    padding: 5px;
+  }
+}
+#comment{
+    textarea{
+    width:100%;
+  }
+  form{
+    background: #EEE;
+    border:1px #DDD solid;
+    padding:10px;
+    margin-bottom:20px;
+
+    textarea{
+      border: 1px #DDD solid;
+      font-size:14px;
+      padding:10px;
+      resize: none;
+    }
+  }
+  .comment {
+    margin: 20px 0;
+    min-height: 50px;
+    padding-top:20px;
+    border-top:1px solid #EEE;
+
+    img{
+      @include border-radius(5px);
+      height:50px;
+      width:50px;
+      float:left;
+      margin-right: 10px;
+    }
+    .author{
+      display: block;
+      font-weight: bold;
+      margin-bottom:10px;
+    }
+    p{
+      padding-left:60px;
+    }
+  }
+}
+footer{
+  color:#FFF;
+  padding:10px;
+  text-align:center;
 }

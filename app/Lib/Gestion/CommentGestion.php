@@ -4,6 +4,7 @@ use Comment;
 use Auth;
 use Input;
 use Hash;
+use Photo;
 
 class CommentGestion implements CommentGestionInterface {
 
@@ -33,6 +34,7 @@ class CommentGestion implements CommentGestionInterface {
 	public function show($id)
 	{
 		$comment = Comment::find($id);
+		$comment->user->photo = Photo::find($comment->user->id);
 		return compact('spot');
 	}
 
@@ -51,6 +53,11 @@ class CommentGestion implements CommentGestionInterface {
 	public function destroy($id)
 	{
 		Comment::find($id)->delete();
+	}
+	public function getOne($id){
+		$comment = Comment::find($id);
+		$comment->user = Photo::find($comment->user->photo);
+		return $comment->user;
 	}
 
 }

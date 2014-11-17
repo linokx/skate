@@ -38,6 +38,9 @@ class UserGestion implements UserGestionInterface {
 	public function show($id)
 	{
 		$user = User::find($id);
+		if($user == null){
+			return false;
+		}
 		$user->photo = Photo::find($user->photo);
 		return compact('user');
 	}

@@ -58,5 +58,4 @@ class SpotGestion implements SpotGestionInterface {
 		$spot->photo = Photo::find($spot->photo);
 		return $spot;
 	}
-
 }
