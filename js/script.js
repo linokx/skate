@@ -300,17 +300,16 @@
 		if($body.id != 'home'){
 			$('#connexion').hide();
 		}
-		$('.connexion').on('click',function(e){
-			e.preventDefault();
-			if($('#connexion').css('display') =='none')
-				$('#connexion').fadeIn();
-			else
-				$('#connexion').fadeOut();
-		});
 		$gabarit['spot'] = $('article.spot');
 		generateSpotMap();
 		$('.content img').box();
 		$('aside img').box();
+		$('.connexion, .inscription').on('click',function(e){
+			e.preventDefault();
+			$(this).toggleClass('onLogin', 400, 'easeOutSine');
+			$('.boxoverlay').fadeToggle(400);
+			$('#connexion').fadeToggle(400);
+		});
 
 	});
 

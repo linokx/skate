@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Skate</title>
+    <title>riddde</title>
     {{ HTML::style('/css/bootstrap.min.css') }}
     {{ HTML::style('/css/screen.css') }}
     <!--[if lt IE 9]>
@@ -18,7 +18,7 @@
         <h1>
             {{ link_to('/', 'Logo') }}</h1>
         <form class="search" id="top-search">
-          <input name="place" class="place" /><input name="key" class="key-word"/>
+          <input name="key" class="key-word" placeholder="Mot-clé" /> à <input name="place" placeholder="Ville" class="place" />
           <input type="submit" value="Go" />
           <a class="geoloc getPosition">GéoLoc</a>
         </form>
@@ -28,8 +28,7 @@
             {{ link_to('profil', 'Profil') }}
             {{ link_to('auth/logout', 'Deconnexion') }}
           @else
-            {{ link_to('auth/login', 'Connexion', array('class'=>'connexion')) }} | {{ link_to('user/create', 'Inscription') }}
-            @include('login')
+            {{ link_to('auth/login', 'Connexion', array('class'=>'connexion')) }}{{ link_to('user/create', 'Inscription', array('class'=>'inscription')) }}
           @endif
         </div>
       </header>
@@ -37,9 +36,19 @@
     <div id="content">
       @yield('contenu')
     </div>
-    <footer>
-      &copy; Riddde
+    <footer class="clearfix">
+      <div id="footer_wrapper">
+        <p>&copy; riddde 2014. All rights reserved.</p>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Jobs</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      </div>
     </footer>
+    @include('login')
+    <div class="boxoverlay"></div>
+    <div class="boxcontainer"></div>
     {{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyDp9rhTUfZDGTY4p6X0JCxL2tHt8KKk1Y0&sensor=false') }}
     {{ HTML::script('/js/jquery.js') }}
     {{ HTML::script('/js/box.js') }}
