@@ -87,7 +87,7 @@
 		};
 		var closeBox = function(){
 			$container.fadeOut("fast");
-			$('#connexion').fadeOut("normal");
+			$('.pop').fadeOut("normal");
 			$overlay.fadeOut("normal", function(){
 				$container.find('img').remove();
 			});

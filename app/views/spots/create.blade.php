@@ -1,36 +1,24 @@
 @extends('template')
 
 @section('contenu')
+<div id="bigmap" data-position="50.8486867,4.3631291">
+</div>
+<div id="add_spot" class="wrapper clearfix">
+	<h2>Enregistrer un nouveau spot</h2>
+	{{ Form::open(array('url' => 'spot', 'method' => 'post', 'files' => true)) }}
+	  <fieldset class="info">
+	  	{{ Form::text('name', '', array('placeholder' => 'Nom')) }}
+	  	{{ Form::text('address', '', array('id'=>'address', 'placeholder' => 'Adresse')) }}
+	  	{{ Form::hidden('lat', '',array('placeholder'=>'Latitude'))}}
+	  	{{ Form::hidden('lon','',array('placeholder'=>'Longitude'))}}
+	  </fieldset>
+	  	{{ Form::textarea('description','', array('class'=>'description', 'placeholder'=>'description'))}}
 
-<section>
-	@if(Session::has('message'))
-		<div class="alert alert-success">{{ Session::get('message') }}</div>
-	@endif	
-	<div class="panel panel-primary">	
-			<div class="panel-heading">Création d'un spot</div>
-			<div class="panel-body"> 
-				<div class="col-sm-12">
-					{{ Form::open(array('url' => 'spot', 'method' => 'post', 'class' => 'form-horizontal panel')) }}	
-						<small class="text-danger">{{ $errors->first('name') }}</small>
-					  <div class="form-group {{ $errors->has('name') ? 'has-error has-feedback' : '' }}">
-					  	{{ Form::label('Nom') }}
-					  	{{ Form::text('name', '', array('class' => 'form-control', 'placeholder' => 'Nom')) }}
-					  </div>
-					  <small class="text-danger">{{ $errors->first('email') }}</small>
-					  <div class="form-group {{ $errors->has('email') ? 'has-error has-feedback' : '' }}">
-					  	{{ Form::label('Adresse') }}
-					  	{{ Form::text('address', '', array('class' => 'form-control', 'id'=>'address', 'placeholder' => 'content')) }}
-					  </div>
-					  <div class="form-group">
-					  	{{ Form::label('Latitude') }}
-					  	{{ Form::text('lat')}}
-					  	{{ Form::label('Longitude') }}
-					  	{{ Form::text('lon','')}}
-					  </div>
-						{{ Form::submit('Envoyer', array('class' => 'btn btn-primary pull-right')) }}
-					{{ Form::close() }}
-				</div>
-			</div>
-		</div>
-</section>
+		{{ Form::submit('Add', array('class' => 'btn')) }}
+	  <fieldset id="file">
+	  	{{ Form::label('image','Ajouter une image',array('class'=>'btn'))}}
+	  	{{ Form::file('image')}}
+	  </fieldset>
+	{{ Form::close() }}
+</div>
 @stop

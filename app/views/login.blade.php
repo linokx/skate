@@ -1,4 +1,4 @@
-<div id="connexion">	
+<div id="connexion" class="pop">	
 	<div>
 		<h2>Connexion</h2>
 		{{ Form::open(array('url' => 'auth/login', 'method' => 'post', 'class' => 'form-horizontal panel')) }}	

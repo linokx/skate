@@ -1,5 +1,5 @@
 <div class="clearfix">
-	@foreach ($user->photos as $photo)
+	@foreach ($user->photosList as $photo)
 		@if((Auth::check() and $user->id == Auth::user()->id))
 			@if($photo->spot_id == 0)
 				{{ HTML::image('uploads/user/thumbnail/'.$photo->url, "", array('height'=> $photo->height, 'width'=>$photo->width, 'class'=>'thumbnail')) }}

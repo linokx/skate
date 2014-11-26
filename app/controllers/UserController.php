@@ -118,7 +118,7 @@ class UserController extends BaseController {
 		if($id == null and $this->user != null){
 			$id = $this->user->id;
 		}
-		return View::make('user.page_photo',  $this->user_gestion->show($id));
+		return View::make('user.page_photo',  $this->user_gestion->photo($id));
 	}
 
 

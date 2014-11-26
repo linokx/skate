@@ -12,6 +12,7 @@ class SpotGestion implements SpotGestionInterface {
 	{
 		$spot->name = Input::get('name');
 		$spot->address = Input::get('address');
+		$spot->description = Input::get('description');
 		$spot->lat = round(10000000*Input::get('lat'))/10000000;
 		$spot->lon = round(10000000*Input::get('lon'))/10000000;
 		$spot->user_id = Auth::user()->id;

@@ -3,8 +3,23 @@
 
 @import "reset.css";
 
+
+@font-face {
+    font-family: 'nexa_boldregular';
+    src: url('../fonts/Nexa_Free_Bold-webfont.eot');
+    src: url('../fonts/Nexa_Free_Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Nexa_Free_Bold-webfont.woff2') format('woff2'),
+         url('../fonts/Nexa_Free_Bold-webfont.woff') format('woff'),
+         url('../fonts/Nexa_Free_Bold-webfont.ttf') format('truetype'),
+         url('../fonts/Nexa_Free_Bold-webfont.svg#nexa_boldregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 $primary-color: #E74C3C; 
 $primary-hover: #E2361E;
+$primary-font: 'nexa_boldregular';
+$secondary-font: 'tahoma';
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
@@ -30,29 +45,48 @@ $primary-hover: #E2361E;
 }
 
 
-@font-face {
-    font-family: 'nexa_boldregular';
-    src: url('../fonts/Nexa_Free_Bold-webfont.eot');
-    src: url('../fonts/Nexa_Free_Bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Nexa_Free_Bold-webfont.woff2') format('woff2'),
-         url('../fonts/Nexa_Free_Bold-webfont.woff') format('woff'),
-         url('../fonts/Nexa_Free_Bold-webfont.ttf') format('truetype'),
-         url('../fonts/Nexa_Free_Bold-webfont.svg#nexa_boldregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+
+a{
+  color: $primary-color;
+  &:hover{
+    color: $primary-hover;
+  }
 }
- 
 h2{
   font-size: 20px;
   margin-bottom:10px;
 }
 
 html{
+  background: #0d0d0d;
   h1,h2,h3,h4,h5,h6{
-    font-family: 'Times New Roman';
+    font-family: $primary-font;
   }
 }
+input, textarea{
+  outline: none;
+}
+input[type="text"],
+textarea{
+  border: 1px solid #CCC;
+  box-shadow: 0 0 1px rgba(0,0,0,.2) inset;
+  display: inline-block;
+  @include border-radius(3px);
+  font-size:14px;
+  padding: 8px 5px;
+  resize: none;
+}
 
+  input[type="submit"]{
+    background: $primary-color;
+    border:none;
+    color: #FFF;
+
+    &:hover,&:focus{
+      background: $primary-hover;
+      color: #FFF;
+    }
+  }
 body{
 
   font-family: Arial;
@@ -62,6 +96,7 @@ body{
   .wrapper{
     @include outer-container;
     max-width: 960px;
+    padding:0 20px;
   }
   .wrapper-header{
     background:#FFF;
@@ -75,6 +110,7 @@ body{
       z-index:2000;
       max-width: 960px;
       margin:auto;
+      padding: 0 20px;
       h1 {
         float: left;
         font-size: 40px;
@@ -109,21 +145,34 @@ body{
         left: 230px;
         top: 17px;
 
-        .place, .key-word {
+        fieldset{
           border: 1px solid #CCC;
-          font-size:14px;
-          margin: 0 10px;
-          padding: 8px 5px;
           box-shadow: 0 0 1px rgba(0,0,0,.2) inset;
+          display: inline-block;
+          @include border-radius(3px 0 0 3px);
+        }
+        input{
+          border:none;
           outline: none;
         }
+        .place, .key-word {
+          background: transparent;
+          font-size:14px;
+          padding: 8px 5px;
+        }
+        .place{
+          border-left: 1px dotted #EEE;
+        }
         input[type="submit"] {
+
+          @include border-radius(0 3px 3px 0);
           width: 34px;
           height: 34px;
-          margin-left: -6px;
+          margin-right: 7px;
+          margin-left: -5px;
           background-color: #34495e;
           color:#FFF;
-          border:none;
+          border: 1px solid $primary-hover;
           background-image: url('../images/submit_arrow.png');
           background-position: center center;
           background-repeat: no-repeat;
@@ -138,7 +187,8 @@ body{
     }
   }
 }
-#connexion {
+.pop{
+  
   background: #FFF;
   border: 1px #DDD solid;
   display:  none;
@@ -150,20 +200,14 @@ body{
   margin-top: 10px;
   margin-left:-300px;
   z-index: 10000;
-  .forget-pass {
-    display: block;
-    font-size: 12px;
-  }
-  &>div{
-    @include span-columns(6);
-    padding: 0 20px;
-  }
+
   h2{
     color: $primary-color;
     font-family: 'nexa_boldregular';
     text-align: center;
     text-transform: uppercase;
   }
+
   input{
     border-radius: 3px;
   }
@@ -182,14 +226,15 @@ body{
     margin-bottom: 14px;
     outline: none;
   }
-  input[type="submit"]{
-    background: $primary-color;
-    color: #FFF;
-    width:100%;
-
-    &:hover{
-      background: $primary-hover;
-    }
+}
+#connexion {
+  .forget-pass {
+    display: block;
+    font-size: 12px;
+  }
+  &>div{
+    @include span-columns(6);
+    padding: 0 20px;
   }
   .checkbox{
     margin-bottom: 10px;
@@ -206,6 +251,24 @@ body{
     }
   }
   .forget-pass{
+    color: $primary-color;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+  }
+}
+.large{
+  background:#FFF;
+  #content{
+
+    box-shadow:none;
+    padding:0;
+    margin: 0;
+    max-width:none;
+  }
+  h2{
+    font-size: 34px;
     color: $primary-color;
   }
 }
@@ -324,9 +387,9 @@ body{
     }
   }
   section{
-    width: 960px;
+    max-width: 960px;
     margin: auto;
-    padding: 60px 0;
+    padding: 60px 20px;
     background: url('../images/hand_phone.png') center right no-repeat;
     &>div{
         @include span-columns(7);
@@ -415,10 +478,7 @@ body{
 }
 
 #content {
-  background: #FFF;
-  box-shadow: 0 1px 1px 1px rgba(0,0,0,.3);
   margin: 80px auto 50px;
-  padding:10px;
   max-width: 960px;
   .welcome {
     padding: 50px 50px 55px 70px;
@@ -537,7 +597,6 @@ body{
 #bigmap {
   height: 410px;
   margin: 0 0 10px;
-  border: 1px #A5A5A5 solid;
   background: #EEE;
   width: 100%;
   display: inline-block;
@@ -554,7 +613,12 @@ body{
   padding: 10px;
 }
 
-
+.content{
+  
+    background: #FFF;
+    box-shadow: 0 1px 1px 1px rgba(0,0,0,.3);
+    padding:10px;
+}
 section#profil {
   
   -background: #EEE;
@@ -563,7 +627,6 @@ section#profil {
   }
   .content {
     @include span-columns(9);
-    background: #FFF;
 
     span{
       @include span-columns(4 of 9);
@@ -579,61 +642,103 @@ section#profil {
   aside {
     @include span-columns(3);
     text-align: center;
+    background: #FFF;
+    box-shadow: 0 1px 1px 1px rgba(0,0,0,.3);
     h1{
       font-size:30px;
       padding-bottom: 20px;
-      border-bottom:  1px solid #DDD;
+    }
+    h1:first-letter{
+      text-transform: uppercase;
+    }
+    header span{
+      margin-bottom: 10px;
     }
     img{
-      @include border-radius(20px);
-      margin: 20px 0;
+      @include border-radius(10px);
+      margin: 0 0 20px;
       width: 100%;
       height: auto;
       max-width: 200px;
       max-height: 200px;
     }
     div{
-      border-top:  1px solid #FFF;
-      line-height: 50px;
-      border-bottom:  1px solid #DDD;
+      padding:30px 0;
+    }
+    span{
+      display:block;
+    }
+    span.count{
+      color: $primary-color;
+      font-size: 50px;
+      &+span{
+        font-weight: bold;
+        margin-top: 10px;
+        color: #444;
+      }
     }
   }
   header {
     border-bottom: 1px #EEE solid;
-    margin-bottom:10px;
+    padding-bottom:10px;
   }
 }
+
+/*------------------ SPOT --------------------*/
 section#spot{
   
   h1{
-    font-size: 60px;
-    border-bottom:1px #333 solid;
-    margin-bottom:10px;
+    color: $primary-color;
+    font-size: 50px;
+    -border-bottom:1px #333 solid;
+    margin-bottom:30px;
+    text-shadow: 1px -1px 0px rgb(131, 21, 0);
+
+    .coord{
+      color: #333;
+      display: block;
+      font-size: 14px;
+      text-shadow: none;
+    }
   }
   h2{
-    margin-top:50px;
+    margin-top: 1em;
     font-size:36px;
+  }
+  h3{
+    margin-bottom: 0.5em;
   }
   .thumbnail{
     @include span-columns(3);
     @include omega(4n);
     height: auto;
+    transition: none;
   }
-  article{
-    margin-bottom: 20px;
+  article>div{
+    @include span-columns(6);
   }
-  .coord{
-    float:right;
+  .description{
+    line-height: 1.4em;
+    margin-bottom: 2em;
   }
-}
-#photos{
-  input[type="file"]{
-    margin:10px 0;
-    padding: 5px;
+
+  #photos{
+    padding-left: 30px;
+      div img{
+        @include span-columns(2 of 6);
+        @include omega(3n);
+        height: auto;
+        margin-bottom: 1.5em;
+      }
+    input[type="file"]{
+      margin:10px 0;
+      padding: 5px;
+    }
   }
 }
 #comment{
-    textarea{
+  margin-bottom: 20px;
+  textarea{
     width:100%;
   }
   form{
@@ -650,39 +755,110 @@ section#spot{
     }
   }
   .comment {
-    margin: 20px 0;
+    margin-bottom: 20px;
     min-height: 50px;
-    padding-top:20px;
-    border-top:1px solid #EEE;
+    padding-top:10px;
 
     img{
       @include border-radius(5px);
       height:50px;
       width:50px;
       float:left;
-      margin-right: 10px;
+      margin-right: 16px;
     }
     .author{
       display: block;
       font-weight: bold;
       margin-bottom:10px;
+      &:first-letter{
+        text-transform: uppercase;
+      }
     }
-    p{
-      padding-left:60px;
+    p, a{
+      padding-left:66px;
+      line-height: 1.4em;
+    }
+    a{
+      margin-top: 10px;
+      display:block;
     }
   }
+
+  .comment+.comment{
+    border-top:1px solid #EEE;
+    padding-top:20px;
+  }
 }
-/* FOOTER */
+#add_spot{
+  min-height: 400px;
+  padding-bottom: 60px;
+  padding-top: 60px;
+
+  h2{
+    margin: 0 0 1em;
+  }
+  .info{
+    @include span-columns(4 of 12);
+    input{
+      margin-bottom: 10px;
+      width: 100%;
+    }
+  }
+  .description{
+      @include span-columns(6 of 12);
+      height: 78px;
+  }
+  input[type="submit"]{
+    @include span-columns(2 of 12);
+    background: $primary-color url('../images/submit_add.png') center center no-repeat;
+    background-size: auto 100%;
+    color:transparent;
+    margin-right: 0;
+    font-size: 30px;
+    height: 78px;
+  }
+}
+
+  #file{
+    margin-top: 20px;
+    clear:both;
+    @include span-columns(6 of 12);
+    label{
+      background: #EEE;
+      border: 1px solid #CCC;
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset;
+      display: inline-block;
+      @include border-radius(3px);
+      font-size: 14px;
+      font-weight:bold;
+      margin-bottom: 10px;
+      padding: 10px 5px;
+      height:48px;
+      line-height: 24px;
+      width: 100%;
+    }
+    input{
+      opacity:0;
+      position: absolute;
+    }
+    &.complete label{
+
+      background: #70BE76  url('../images/check.png') 20px center no-repeat;
+      border-color: rgb(94, 162, 94);
+      color: #FFF;
+    }
+  }
+/*----------------- FOOTER ---------------------*/
 
 footer {
   background: #0d0d0d;
   width: 100%;
-  padding: 0 0 30px 0;
+  padding: 0 20px 30px ;
   
   #footer_wrapper {
 
   border-top: 1px dotted #333;
-  width: 960px;
+  max-width: 960px;
   margin: 50px auto 0;
   padding-top: 10px;
 

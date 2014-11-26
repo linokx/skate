@@ -47,7 +47,7 @@ class SpotController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('spots.create');
+		return View::make('spots.create',array('body_class'=>'large'));
 	}
 
 
@@ -84,7 +84,8 @@ class SpotController extends \BaseController {
 		}
 		return View::make('spots.show', array(
 			'spot' => $spot,
-			'comments' => $comments
+			'comments' => $comments,
+			'body_class'=>'large'
 			)
 		);
 	}

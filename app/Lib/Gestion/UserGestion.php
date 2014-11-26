@@ -42,6 +42,9 @@ class UserGestion implements UserGestionInterface {
 			return false;
 		}
 		$user->photo = Photo::find($user->photo);
+		$user->photos = Photo::where('user_id',$user->id);
+		$user->photosCount = $user->photos->count();
+		$user->photosList = $user->photos->take(4)->get();
 		return compact('user');
 	}
 
@@ -66,6 +69,18 @@ class UserGestion implements UserGestionInterface {
 		$user = User::find($id);
 		$user->photo = $photo->id;
 		$user->save();
+	}
+	public function photo($id)
+	{
+		$user = User::find($id);
+		if($user == null){
+			return false;
+		}
+		$user->photo = Photo::find($user->photo);
+		$user->photos = Photo::where('user_id',$user->id);
+		$user->photosCount = $user->photos->count();
+		$user->photosList = $user->photos->get();
+		return compact('user');
 	}
 
 }

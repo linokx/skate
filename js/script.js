@@ -11,6 +11,7 @@
 		windowWidth,
 		aPosition = [],
 		aMarker = [],
+		tempMarker,
 		aKeyWord = [],
 		iRadius,
 		oCoords,
@@ -168,15 +169,18 @@
 						title: spot['name'],
 						spot_id: spot['id'],
 						map:gmap,
-						image: spot['photo']['url'],
+						image: (spot['photo']!= null)? spot['photo']['url'] : '',
 						position:new google.maps.LatLng(parseFloat(spot['lat']),parseFloat(spot['lon'])),				
 				        icon: image,
 				        infowindow: infobox
 					});
 					google.maps.event.addListener(aMarker[spot['id']], 'mouseover', function() {
+						var html = '<div style="padding:10px;">';
+							html += (this.image)? '<img src="'+baseDir+'uploads/spot/thumbnail/'+this.image+'" height="50" width="50" style="float:left; margin-right:10px" />' : '';
+							html += '<p>'+this.title+'</p>';
 						this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
 				  		this.infowindow.open(gmap,this);
-				  		this.infowindow.setContent('<div style="padding:10px;"><img src="'+baseDir+'uploads/spot/thumbnail/'+this.image+'" height="50" width="50" style="float:left; margin-right:10px" /><p>'+this.title+'</p>');
+				  		this.infowindow.setContent(html);
 					});
 					google.maps.event.addListener(aMarker[spot['id']],'mouseout',function(){
 						this.infowindow.close();
@@ -205,6 +209,15 @@
 	    }
 	},
 	localiser = function(e){
+		var icon = {
+		    url: '../images/map/big_pointer.png',
+		    // This marker is 20 pixels wide by 32 pixels tall.
+		    size: new google.maps.Size(30, 36),
+		    // The origin for this image is 0,0.
+		    origin: new google.maps.Point(0,0),
+		    // The anchor for this image is the base of the flagpole at 0,32.
+		    anchor: new google.maps.Point(0, 32)
+		};
 		e.preventDefault();
 		if(sLocMode == "city"){
 			var address;
@@ -219,6 +232,18 @@
 					if(status == "OK"){
 						document.getElementsByName('lat')[0].value = results[0].geometry.location.lat();
 						document.getElementsByName('lon')[0].value = results[0].geometry.location.lng();
+
+						aPosition['lat'] = results[0].geometry.location.lat();
+						aPosition['lon'] = results[0].geometry.location.lng();
+						changeMapPosition(aPosition);
+						if(tempMarker != null)
+							tempMarker.setMap(null);
+						tempMarker = new google.maps.Marker({
+						map:gmap,
+						position:new google.maps.LatLng(parseFloat(results[0].geometry.location.lat()),parseFloat(results[0].geometry.location.lng())),				
+				        icon: icon,
+				        infowindow: infobox
+					});
 					}
 					else
 					{
@@ -268,6 +293,16 @@
 		
 	
 	$(function(){
+
+		image = {
+		    url: baseDir+'images/map/small_pointer.png',
+		    // This marker is 20 pixels wide by 32 pixels tall.
+		    size: new google.maps.Size(30, 36),
+		    // The origin for this image is 0,0.
+		    origin: new google.maps.Point(0,0),
+		    // The anchor for this image is the base of the flagpole at 0,32.
+		    anchor: new google.maps.Point(0, 32)
+		};
 		infobox = new InfoBox({
 	         //content: document.getElementById("infobox"),
 	         content: '',
@@ -309,6 +344,11 @@
 			$(this).toggleClass('onLogin', 400, 'easeOutSine');
 			$('.boxoverlay').fadeToggle(400);
 			$('#connexion').fadeToggle(400);
+		});
+		$('#file input').on('change',function(e){
+			var name = $(this).val();
+			$('#file').addClass('complete')
+			.find('label').html(name);
 		});
 
 	});

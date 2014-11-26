@@ -12,13 +12,16 @@
       {{ HTML::style('https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js') }}
     <![endif]-->
   </head>
-    <body {{{ isset($body_id) ? 'id='.$body_id : '' }}}>
+    <body {{{isset($body_class) ? 'class='.$body_class : '' }}} {{{ isset($body_id) ? 'id='.$body_id : '' }}}>
       <div class="wrapper-header">
       <header>
         <h1>
             {{ link_to('/', 'Logo') }}</h1>
         <form class="search" id="top-search">
-          <input name="key" class="key-word" placeholder="Mot-clé" /> à <input name="place" placeholder="Ville" class="place" />
+          <fieldset>
+            <input name="key" class="key-word" placeholder="Mot-clé" />
+            <input name="place" placeholder="Ville" class="place" />
+          </fieldset>
           <input type="submit" value="Go" />
           <a class="geoloc getPosition">GéoLoc</a>
         </form>
@@ -46,7 +49,10 @@
         </ul>
       </div>
     </footer>
-    @include('login')
+
+    @if(!Auth::check())
+      @include('login')
+    @endif
     <div class="boxoverlay"></div>
     <div class="boxcontainer"></div>
     {{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyDp9rhTUfZDGTY4p6X0JCxL2tHt8KKk1Y0&sensor=false') }}

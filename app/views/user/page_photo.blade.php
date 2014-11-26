@@ -7,7 +7,7 @@
 			@if(Auth::user() and (Auth::user()->admin or Auth::user()->id == $user->id))
 
 			<div>
-				<h2>Photos de {{$user->pseudo}} ({{count($user->photos)}})</h2>
+				<h2>Photos de {{$user->pseudo}}</h2>
 				@include('user.photo')
 			</div>
 			@else

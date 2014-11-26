@@ -16,6 +16,7 @@ class CreateSpotsTable extends Migration {
 			$table->increments('id');
 			$table->timestamps();
 			$table->string('name', 100);
+			$table->text('description');
 			$table->double('lat');
 			$table->double('lon');
 			$table->string('address',255);

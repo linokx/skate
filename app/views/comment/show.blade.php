@@ -3,7 +3,7 @@
 						@if($user->photo)
 							{{ HTML::image('uploads/user/thumbnail/'.$user->photo->url, "Photo de $user->pseudo", array('height'=> $user->photo->height, 'width'=>$user->photo->width)) }}
 						@endif
-						<p>{{$comment->content}}</p>
+						<p>{{ str_limit($comment->content, $limit = 500, $end = '...')}}</p>
 						{{ link_to('spot/'.$comment->spot_id, 'Voir la page') }}
 					</div>
 				@elseif(isset($comment))

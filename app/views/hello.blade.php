@@ -14,7 +14,7 @@
 			</li>
 			<li>
 				
-			    <div id="bimap" data-position="50.8486867,4.3631291">
+			    <div id="bigmap" data-position="50.8486867,4.3631291">
 				</div>
 			</li>
 		</ul>
