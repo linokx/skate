@@ -37,8 +37,9 @@
         </div>
       </header>
     </div>
-    <div id="content" ng-controller="contentController as contentCtrl">
-      @yield('contenu')
+    <div id="content" ng-controller="contentController as content">
+
+      @include('spots.view')
     </div>
     <footer class="clearfix">
       <div id="footer_wrapper">
@@ -57,6 +58,8 @@
     <div class="boxoverlay"></div>
     <div class="boxcontainer"></div>
     {{ HTML::script('http://maps.googleapis.com/maps/api/js?key=AIzaSyDp9rhTUfZDGTY4p6X0JCxL2tHt8KKk1Y0&sensor=false') }}
+    {{ HTML::script('/js/lodash.compat.min.js') }}
+    {{ HTML::script('/js/angular-google-maps.min.js') }}
     {{ HTML::script('/js/jquery.js') }}
     {{ HTML::script('/js/box.js') }}
     {{ HTML::script('/js/infobox.js') }}

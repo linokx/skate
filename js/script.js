@@ -147,6 +147,7 @@
 			//Ajout des spots sur la map
 			refreshSpot();
 
+			mtest();
 			//Application du style
 			//gmap.mapTypes.set('map_style', styledMap);
 			//gmap.setMapTypeId('map_style');	

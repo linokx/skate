@@ -12,6 +12,8 @@ class SpotController extends \BaseController {
 	protected $spot_gestion;
 	protected $comment_gestion;
 
+	protected $layout = 'app';
+
 	public function __construct(
 		SpotCreateValidator $create_validation, 
 		SpotUpdateValidator $update_validation,
@@ -84,12 +86,18 @@ class SpotController extends \BaseController {
 			foreach ($comments as $key => &$comment) {
 				$comment->user->photo = $this->comment_gestion->getOne($comment->id);
 			}
-			return View::make('spots.show', array(
+			/*return View::make('spots.show', array(
 				'spot' => $spot,
 				'comments' => $comments,
 				'body_class'=>'large'
 				)
-			);
+			);*/
+        	return View::make('app', array(
+				'spot' => $spot,
+				'comments' => $comments,
+				'body_class'=>'large'
+				));
+			//return View::make('spots.view');
 		else:
 			return View::make('error.spot');
 		endif;
@@ -148,7 +156,17 @@ class SpotController extends \BaseController {
 	{
 		//
 	}
-
+	public function info($id){
+		$spot = Spot::find((int)$id);
+		if($spot):
+			$comments = Comment::where('spot_id',$spot->id)->orderBy('created_at','DESC')->paginate(10);
+			foreach ($comments as $key => &$comment) {
+				$comment->user->photo = $this->comment_gestion->getOne($comment->id);
+			}
+			$spot->comments = $comments;
+			return Response::json($spot);
+		endif;
+	}
 	public function liste()
 	{
 		if(Request::ajax()){}

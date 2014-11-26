@@ -23,6 +23,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('spot/list','SpotController@liste');
 Route::get('spot/show','SpotController@show');
+Route::get('spot/info/{id}','SpotController@info');
 Route::resource('comment','CommentController');
 Route::resource('spot','SpotController');
 

@@ -817,3 +817,5 @@ footer {
           color: #FFF; }
 
 /*# sourceMappingURL=screen.css.map */
+.angular-google-map-container { height: 400px;
+  margin: 0 0 10px; }
