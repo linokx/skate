@@ -34,7 +34,8 @@ class SpotController extends \BaseController {
 	{
 		return View::make('spots.index', array(
 			'spots' => Spot::all(),
-			'body_id'=>'spot'
+			'body_id'=>'spot',
+			'body_class' => 'large'
 			)
 		);
 	}
@@ -78,16 +79,20 @@ class SpotController extends \BaseController {
 	public function show($id)
 	{
 		$spot = Spot::find($id);
-		$comments = Comment::where('spot_id',$spot->id)->paginate(10);
-		foreach ($comments as $key => &$comment) {
-			$comment->user->photo = $this->comment_gestion->getOne($comment->id);
-		}
-		return View::make('spots.show', array(
-			'spot' => $spot,
-			'comments' => $comments,
-			'body_class'=>'large'
-			)
-		);
+		if($spot):
+			$comments = Comment::where('spot_id',$spot->id)->orderBy('created_at','DESC')->paginate(10);
+			foreach ($comments as $key => &$comment) {
+				$comment->user->photo = $this->comment_gestion->getOne($comment->id);
+			}
+			return View::make('spots.show', array(
+				'spot' => $spot,
+				'comments' => $comments,
+				'body_class'=>'large'
+				)
+			);
+		else:
+			return View::make('error.spot');
+		endif;
 	}
 
 
@@ -170,6 +175,7 @@ class SpotController extends \BaseController {
 			$value->found = 0;
 			foreach ($keyWords as $word) {
 				$pattern = '/'.$word.'/';
+				$value->found += preg_match($pattern, $value->description);
 				$value->found += preg_match($pattern, $value->name);
 			}
 			if($value->found <= 0){

@@ -53,8 +53,7 @@
 		else{
 			getNavigatorPosition();
 		}
-
-			$('#img_and_map').addClass('active');
+		$('#img_and_map').addClass('active');
 	},
 	getGooglePosition = function($obj){
 		if($obj.val() != ''){
@@ -87,6 +86,9 @@
 	getKeyWord = function(){
 		if($('.key-word').val() != ''){
 			aKeyWord = $('.key-word').val();
+		}
+		else if(aKeyWord != ''){
+			aKeyWord = '';
 		}
 	}
 	generateSpotMap = function(){
@@ -155,6 +157,8 @@
 		refreshSpot();
 	},
 	refreshSpot = function(){
+
+		console.log({lat:aPosition['lat'],lon:aPosition['lon'],rad:iRadius, key:aKeyWord});
 		calculRadius();
 		$.ajax({
 			url:baseDir+'spot/list',
@@ -188,7 +192,6 @@
 					google.maps.event.addListener(aMarker[spot['id']],'click',function(){
 						window.location.href=baseDir+'spot/'+this.spot_id;
 					});
-					//createClone(spot);
 				};
 				
 			},
@@ -348,7 +351,7 @@
 		$('#file input').on('change',function(e){
 			var name = $(this).val();
 			$('#file').addClass('complete')
-			.find('label').html(name);
+			.find('label').html('Fichier selectionné');
 		});
 
 	});

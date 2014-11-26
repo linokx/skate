@@ -623,7 +623,7 @@ section#profil {
   
   -background: #EEE;
   & > * {
-    padding: 10px;
+    padding: 20px;
   }
   .content {
     @include span-columns(9);
@@ -706,7 +706,7 @@ section#spot{
     font-size:36px;
   }
   h3{
-    margin-bottom: 0.5em;
+    margin-bottom: 0.3em;
   }
   .thumbnail{
     @include span-columns(3);
@@ -717,9 +717,9 @@ section#spot{
   article>div{
     @include span-columns(6);
   }
-  .description{
+  .description, .address, .coord{
     line-height: 1.4em;
-    margin-bottom: 2em;
+    margin-bottom: 1.5em;
   }
 
   #photos{
@@ -733,6 +733,17 @@ section#spot{
     input[type="file"]{
       margin:10px 0;
       padding: 5px;
+    }
+    #file{
+      width: 100%;
+      margin: 0;
+
+      &+input[type="submit"]{
+        display: none;
+      }
+      &.complete+input[type="submit"]{
+        display: block;
+      }
     }
   }
 }
@@ -767,12 +778,16 @@ section#spot{
       margin-right: 16px;
     }
     .author{
-      display: block;
+      display: inline-block;
       font-weight: bold;
       margin-bottom:10px;
       &:first-letter{
         text-transform: uppercase;
       }
+    }
+    .date{
+      float: right;
+      font-size: 10px;
     }
     p, a{
       padding-left:66px;

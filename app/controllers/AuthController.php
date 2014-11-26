@@ -29,7 +29,7 @@ class AuthController extends BaseController {
 				'password' => Input::get('password')
 			);
 			if(Auth::attempt($user, Input::get('souvenir'))) {
-				return Redirect::intended('');
+				return Redirect::back();
 			}
 		    return Redirect::to('/')
 		    ->with('pass', 'Le mot de passe n\'est pas correct !')

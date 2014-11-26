@@ -12,6 +12,7 @@
 							{{HTML::image('uploads/user/thumbnail/'.$comment->user->photo->url, "Photo de $comment->user->pseudo", array('height'=> $comment->user->photo->height, 'width'=>$comment->user->photo->width)) }}
 						@endif
 						<span class="author" itemprop="author">{{$comment->user->pseudo}}</span>
+						<span class="date" itemprop="date">{{$comment->created_at}}</span>
 						<p itemprop="reviewBody">{{$comment->content}}</p>
 					</div>
 				@endif

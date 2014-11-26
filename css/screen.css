@@ -526,7 +526,7 @@ body {
 section#profil {
   -background: #EEE; }
   section#profil > * {
-    padding: 10px; }
+    padding: 20px; }
   section#profil .content {
     float: left;
     display: block;
@@ -612,7 +612,7 @@ section#spot h2 {
   margin-top: 1em;
   font-size: 36px; }
 section#spot h3 {
-  margin-bottom: 0.5em; }
+  margin-bottom: 0.3em; }
 section#spot .thumbnail {
   float: left;
   display: block;
@@ -633,9 +633,9 @@ section#spot article > div {
   width: 48.82117%; }
   section#spot article > div:last-child {
     margin-right: 0; }
-section#spot .description {
+section#spot .description, section#spot .address, section#spot .coord {
   line-height: 1.4em;
-  margin-bottom: 2em; }
+  margin-bottom: 1.5em; }
 section#spot #photos {
   padding-left: 30px; }
   section#spot #photos div img {
@@ -654,6 +654,13 @@ section#spot #photos {
   section#spot #photos input[type="file"] {
     margin: 10px 0;
     padding: 5px; }
+  section#spot #photos #file {
+    width: 100%;
+    margin: 0; }
+    section#spot #photos #file + input[type="submit"] {
+      display: none; }
+    section#spot #photos #file.complete + input[type="submit"] {
+      display: block; }
 
 #comment {
   margin-bottom: 20px; }
@@ -683,11 +690,14 @@ section#spot #photos {
       float: left;
       margin-right: 16px; }
     #comment .comment .author {
-      display: block;
+      display: inline-block;
       font-weight: bold;
       margin-bottom: 10px; }
       #comment .comment .author:first-letter {
         text-transform: uppercase; }
+    #comment .comment .date {
+      float: right;
+      font-size: 10px; }
     #comment .comment p, #comment .comment a {
       padding-left: 66px;
       line-height: 1.4em; }

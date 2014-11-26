@@ -1,13 +1,6 @@
 @extends('template')
 
 @section('contenu')
-
-		<form class="search" id="content-search">
-	        <input name="place" class="place" />
-	        <input name="key" class="key-word"/>
-			<input type="submit" value="Go" />
-			<a class="geoloc getPosition">GéoLoc</a>
-		</form>
     <div id="bigmap" data-position="50.8486867,4.3631291">
 	</div>
 	<section id="spot-list">

@@ -37,6 +37,7 @@ Route::group(array('prefix' => 'user'), function(){
 
 
 Route::group(array('before' => 'auth'), function(){
+		Route::get('spot/create', 'SpotController@create');
 		Route::put('photo/spot/{id}', 'PhotoController@spot');
 		Route::get('profil','UserController@profil');
 		Route::get('profil/edit', 'UserController@edit');

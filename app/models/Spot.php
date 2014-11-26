@@ -7,7 +7,7 @@ class Spot extends Eloquent{
 
 	public function comments() 
 	{
-    	return $this->hasMany('Comment');
+    	return $this->hasMany('Comment')->orderBy('created_at');
 	}
 
 	public function photos() 
